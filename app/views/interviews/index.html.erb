@@ -8,6 +8,7 @@
     <th>Interviewee email</th>
     <th>Start time</th>
     <th>End time</th>
+    <th>Resume</th>
   </tr>
 
   <% @interviews.each do |interview| %>
@@ -17,6 +18,7 @@
       <td><%= interview.interviewee_email %></td>
       <td><%= interview.try(:start_time).try(:strftime , "%m/%d/%Y at %I:%M%p") %></td>
       <td><%= interview.try(:end_time).try(:strftime , "%m/%d/%Y at %I:%M%p") %></td>
+      <td><%= link_to 'Resume', interview.avatar.url %></td>
       <td><%= link_to 'Show', interview_path(interview) %></td>
       <td><%= link_to 'Edit', edit_interview_path(interview) %></td>
       <td><%= link_to 'Destroy', interview_path(interview),

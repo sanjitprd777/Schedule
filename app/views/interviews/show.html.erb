@@ -24,6 +24,10 @@
   <%= @interview.try(:end_time).try(:strftime , "%m/%d/%Y at %I:%M%p") %>
 </p>
 
+<p>
+  <strong>Resume:</strong>
+  <%= link_to 'Resume', @interview.avatar.url %>
+</p>
 
 <%= link_to 'Edit', edit_interview_path(@interview) %> |
 <%= link_to 'Back', interviews_path %>

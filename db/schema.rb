@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200521185358) do
+ActiveRecord::Schema.define(version: 20200521191535) do
 
   create_table "interviews", force: :cascade do |t|
     t.string "title"
@@ -20,6 +20,10 @@ ActiveRecord::Schema.define(version: 20200521185358) do
     t.datetime "updated_at", null: false
     t.datetime "start_time"
     t.datetime "end_time"
+    t.string "avatar_file_name"
+    t.string "avatar_content_type"
+    t.bigint "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
 end

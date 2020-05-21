@@ -50,3 +50,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'sass', '3.7.4'
+gem 'paperclip', '6.1.0'
+gem 'gs', '0.2.0'
+gem 'simple_form', '5.0.2'

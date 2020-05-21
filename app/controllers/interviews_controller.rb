@@ -19,6 +19,7 @@ class InterviewsController < ApplicationController
 
 	def create
 		@interview = Interview.new(interview_params) 
+		@interview.avatar = params[:interview][:avatar]
 		if @interview.save
 			redirect_to @interview
 		else
@@ -29,7 +30,7 @@ class InterviewsController < ApplicationController
 	def update
 		@interview = Interview.find(params[:id]) 
 		if @interview.update(interview_params) # can restrict in passing args
-			redirect_to @interview
+			redirect_to(interview_path(@interview))
 		else
 			render 'edit'
 		end
@@ -45,7 +46,7 @@ class InterviewsController < ApplicationController
 private
 
 	def interview_params
-		params.require(:interview).permit(:title, :interviewer_email, :interviewee_email, :start_time, :end_time)
+		params.require(:interview).permit(:title, :interviewer_email, :interviewee_email, :start_time, :end_time, :avatar)
 	end
 
 end
