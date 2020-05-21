@@ -1,0 +1,27 @@
+<h1>Listing Interviews Events</h1>
+ 
+<%= link_to 'New Interview', new_interview_path %>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Interviewer email</th>
+    <th>Interviewee email</th>
+    <th>Start time</th>
+    <th>End time</th>
+  </tr>
+
+  <% @interviews.each do |interview| %>
+    <tr>
+      <td><%= interview.title %></td>
+      <td><%= interview.interviewer_email %></td>
+      <td><%= interview.interviewee_email %></td>
+      <td><%= interview.try(:start_time).try(:strftime , "%m/%d/%Y at %I:%M%p") %></td>
+      <td><%= interview.try(:end_time).try(:strftime , "%m/%d/%Y at %I:%M%p") %></td>
+      <td><%= link_to 'Show', interview_path(interview) %></td>
+      <td><%= link_to 'Edit', edit_interview_path(interview) %></td>
+      <td><%= link_to 'Destroy', interview_path(interview),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
