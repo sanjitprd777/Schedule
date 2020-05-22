@@ -4,7 +4,6 @@ class InterviewsController < ApplicationController
 		@interviews = Interview.all
 	end
 
-
 	def show
 		@interview = Interview.find(params[:id])
 	end
@@ -21,6 +20,7 @@ class InterviewsController < ApplicationController
 		@interview = Interview.new(interview_params) 
 		@interview.avatar = params[:interview][:avatar]
 		if @interview.save
+			UserMailer.with(interview: @interview).invitation_email.deliver_now
 			redirect_to @interview
 		else
 			render 'new'
@@ -30,6 +30,7 @@ class InterviewsController < ApplicationController
 	def update
 		@interview = Interview.find(params[:id]) 
 		if @interview.update(interview_params) # can restrict in passing args
+			UserMailer.with(interview: @interview).update_invitation_email.deliver_now
 			redirect_to(interview_path(@interview))
 		else
 			render 'edit'
