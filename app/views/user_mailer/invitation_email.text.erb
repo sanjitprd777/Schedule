@@ -1,4 +1,6 @@
-Interview Notice, <%= @interview.interviewee_email %>
+Interview Notice for <%= @interview.interviewee_email %>
 ===============================================
 
-We have scheduled an Interview of you at Time.
+We have scheduled an Interview of you from time <%= @interview.try(:start_time).try(:strftime , "%m/%d/%Y at %I:%M%p") %> to <%= @interview.try(:end_time).try(:strftime , "%m/%d/%Y at %I:%M%p") %>.
+
+One attachment here: <a href= <%= @url %> > Resume</a>

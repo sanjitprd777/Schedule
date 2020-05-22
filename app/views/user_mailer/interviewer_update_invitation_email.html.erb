@@ -4,7 +4,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h3>Interview Update Notice</h3> to: <%= @interview.interviewer_email %>
+    <h3>Interview Udate Notice</h3> to: <%= @interview.interviewer_email %>
     <p>You have rescheduled the interview for <%= @interview.interviewee_email %> on Date: <%= @interview.try(:start_time).try(:strftime , "%m/%d/%Y") %> from Time: <%= @interview.try(:start_time).try(:strftime , "%I:%M%p") %> to <%= @interview.try(:end_time).try(:strftime , "%I:%M%p") %>.</p>
 
     <p>
