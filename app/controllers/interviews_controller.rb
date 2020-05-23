@@ -18,8 +18,8 @@ class InterviewsController < ApplicationController
 
 	def create
 		@interview = Interview.new(interview_params) 
-		@interview.avatar = params[:interview][:avatar]
 		if @interview.save
+			# SendEmailJob.perform_later
 			UserMailer.with(interview: @interview).invitation_email.deliver_now
 			UserMailer.with(interview: @interview).interviewer_invitation_email.deliver_now
 			redirect_to @interview
@@ -31,6 +31,7 @@ class InterviewsController < ApplicationController
 	def update
 		@interview = Interview.find(params[:id]) 
 		if @interview.update(interview_params) # can restrict in passing args
+			# SendEmailJob.perform_update_later
 			UserMailer.with(interview: @interview).update_invitation_email.deliver_now
 			UserMailer.with(interview: @interview).interviewer_update_invitation_email.deliver_now
 			redirect_to @interview
