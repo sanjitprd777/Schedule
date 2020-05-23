@@ -3,6 +3,7 @@ Rails.application.configure do
   
   Paperclip.options[:command_path] = 'C:\Program Files (x86)\GnuWin32\bin'
   
+  config.active_job.queue_adapter = :sidekiq
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development

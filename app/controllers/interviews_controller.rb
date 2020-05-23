@@ -22,8 +22,10 @@ class InterviewsController < ApplicationController
 			# SendEmailJob.perform_later
 			UserMailer.with(interview: @interview).invitation_email.deliver_now
 			UserMailer.with(interview: @interview).interviewer_invitation_email.deliver_now
+			flash[:success] = "Interview has been created!"
 			redirect_to @interview
 		else
+			flash[:alert] = "Unable to complete interview request, Please check parameters"
 			render 'new'
 		end
 	end
@@ -31,20 +33,23 @@ class InterviewsController < ApplicationController
 	def update
 		@interview = Interview.find(params[:id]) 
 		if @interview.update(interview_params) # can restrict in passing args
-			# SendEmailJob.perform_update_later
 			UserMailer.with(interview: @interview).update_invitation_email.deliver_now
 			UserMailer.with(interview: @interview).interviewer_update_invitation_email.deliver_now
+			flash[:success] = "Interview has been updated!"
 			redirect_to @interview
 		else
+			flash[:alert] = "Unable to complete interview request, Please check parameters"
 			render 'edit'
 		end
 	end
 
 	def destroy
-	  @interview = Interview.find(params[:id])
-	  @interview.destroy
-	 
-	  redirect_to interviews_path
+		@interview = Interview.find(params[:id])
+		UserMailer.with(interview: @interview).decline_invitation_email.deliver_now
+		UserMailer.with(interview: @interview).interviewer_decline_invitation_email.deliver_now		
+		@interview.destroy
+		flash[:success] = "Interview has been declined!"
+		redirect_to interviews_path
 	end
 
 private

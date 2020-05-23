@@ -55,4 +55,7 @@ gem 'gs', '0.2.0'
 gem 'simple_form', '5.0.2'
 gem 'mail', '2.7.1'
 gem 'listen', '3.2.1'
+
+gem 'wdm'
 gem 'sidekiq', '6.0.7'
+gem 'sinatra', '2.0.8.1'
