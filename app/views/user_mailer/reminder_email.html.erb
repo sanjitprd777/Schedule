@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h3>Reminder Interview Notice</h3> to: <%= @interview.interviewer_email %>
+    <p>Your Interview will begin in 30 minutes from: <%= @interview.try(:start_time).try(:strftime , "%I:%M%p") %> to <%= @interview.try(:end_time).try(:strftime , "%I:%M%p") %>.</p>
+
+      <strong>One attachment here: </strong>
+      <a href= <%= @url %> > Resume</a>
+    </p>
+
+  </body>
+</html>

@@ -37,4 +37,10 @@ class UserMailer < ApplicationMailer
     mail(to: @interview.interviewer_email, subject: 'Interview Declined Notice.')
   end
 
+  def reminder_email
+    @interview = params[:interview]
+    @url = 'http://localhost:3000/' + @interview.avatar.url
+    mail(to: @interview.interviewee_email, subject: 'Reminder for Upcomming Interview.')
+  end  
+
 end

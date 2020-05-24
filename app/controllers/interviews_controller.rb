@@ -1,7 +1,7 @@
 class InterviewsController < ApplicationController
 
 	def index
-		@interviews = Interview.all
+		@interviews = Interview.all.order(created_at: :desc)
 	end
 
 	def show
@@ -19,11 +19,12 @@ class InterviewsController < ApplicationController
 	def create
 		@interview = Interview.new(interview_params) 
 		if @interview.save
-			# SendEmailJob.perform_later
-			UserMailer.with(interview: @interview).invitation_email.deliver_now
-			UserMailer.with(interview: @interview).interviewer_invitation_email.deliver_now
+			# SendEmailJob.perform_later(@interview)
+			# UserMailer.with(interview: @interview).invitation_email.deliver_now
+			# UserMailer.with(interview: @interview).interviewer_invitation_email.deliver_now
 			flash[:success] = "Interview has been created!"
-			redirect_to @interview
+            UserMailer.with(interview: @interview).reminder_email.deliver_later(wait_until: @interview.start_time - 30.minutes)
+            redirect_to @interview
 		else
 			flash[:alert] = "Unable to complete interview request, Please check parameters"
 			render 'new'
@@ -36,7 +37,8 @@ class InterviewsController < ApplicationController
 			UserMailer.with(interview: @interview).update_invitation_email.deliver_now
 			UserMailer.with(interview: @interview).interviewer_update_invitation_email.deliver_now
 			flash[:success] = "Interview has been updated!"
-			redirect_to @interview
+            UserMailer.with(interview: @interview).reminder_email.deliver_later(wait_until: @interview.start_time - 30.minutes)
+            redirect_to @interview
 		else
 			flash[:alert] = "Unable to complete interview request, Please check parameters"
 			render 'edit'
@@ -45,8 +47,8 @@ class InterviewsController < ApplicationController
 
 	def destroy
 		@interview = Interview.find(params[:id])
-		UserMailer.with(interview: @interview).decline_invitation_email.deliver_now
-		UserMailer.with(interview: @interview).interviewer_decline_invitation_email.deliver_now		
+		# UserMailer.with(interview: @interview).decline_invitation_email.deliver_now
+		# UserMailer.with(interview: @interview).interviewer_decline_invitation_email.deliver_now		
 		@interview.destroy
 		flash[:success] = "Interview has been declined!"
 		redirect_to interviews_path

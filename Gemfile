@@ -26,7 +26,6 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
-gem 'redis', '4.1.4'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -44,6 +43,9 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -53,9 +55,14 @@ gem 'sass', '3.7.4'
 gem 'paperclip', '6.1.0'
 gem 'gs', '0.2.0'
 gem 'simple_form', '5.0.2'
+gem 'bootstrap-sass'
 gem 'mail', '2.7.1'
+gem 'jquery-rails'
 gem 'listen', '3.2.1'
 
 gem 'wdm'
-gem 'sidekiq', '6.0.7'
+gem 'sidekiq', '< 6'
 gem 'sinatra', '2.0.8.1'
+gem 'redis', '4.1.4'
+gem 'redis-namespace', '1.7.0'
+gem "simple_calendar", "~> 2.0"
