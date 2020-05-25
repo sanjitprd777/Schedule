@@ -19,11 +19,10 @@ class InterviewsController < ApplicationController
 	def create
 		@interview = Interview.new(interview_params) 
 		if @interview.save
-			# SendEmailJob.perform_later(@interview)
-			# UserMailer.with(interview: @interview).invitation_email.deliver_now
-			# UserMailer.with(interview: @interview).interviewer_invitation_email.deliver_now
+			SendEmailToUserWorkerWorker.perform_at(1.minutes.from_now, @interview.interviewee_email)
+			# SendEmailJob.perform_later(@interview.id)
+			# SendEmailJob.set(wait_until: 1.minutes.from_now).perform_later(@interview.id)			
 			flash[:success] = "Interview has been created!"
-            UserMailer.with(interview: @interview).reminder_email.deliver_later(wait_until: @interview.start_time - 30.minutes)
             redirect_to @interview
 		else
 			flash[:alert] = "Unable to complete interview request, Please check parameters"
@@ -34,10 +33,9 @@ class InterviewsController < ApplicationController
 	def update
 		@interview = Interview.find(params[:id]) 
 		if @interview.update(interview_params) # can restrict in passing args
-			UserMailer.with(interview: @interview).update_invitation_email.deliver_now
-			UserMailer.with(interview: @interview).interviewer_update_invitation_email.deliver_now
+			# UserMailer.with(interview: @interview).update_invitation_email.deliver_now
+   #          UserMailer.with(interview: @interview).reminder_email.deliver_later(wait_until: @interview.start_time - 30.minutes)
 			flash[:success] = "Interview has been updated!"
-            UserMailer.with(interview: @interview).reminder_email.deliver_later(wait_until: @interview.start_time - 30.minutes)
             redirect_to @interview
 		else
 			flash[:alert] = "Unable to complete interview request, Please check parameters"
@@ -48,7 +46,6 @@ class InterviewsController < ApplicationController
 	def destroy
 		@interview = Interview.find(params[:id])
 		# UserMailer.with(interview: @interview).decline_invitation_email.deliver_now
-		# UserMailer.with(interview: @interview).interviewer_decline_invitation_email.deliver_now		
 		@interview.destroy
 		flash[:success] = "Interview has been declined!"
 		redirect_to interviews_path
