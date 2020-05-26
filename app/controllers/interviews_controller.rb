@@ -19,9 +19,8 @@ class InterviewsController < ApplicationController
 	def create
 		@interview = Interview.new(interview_params) 
 		if @interview.save
-			SendEmailToUserWorkerWorker.perform_at(1.minutes.from_now, @interview.interviewee_email)
-			# SendEmailJob.perform_later(@interview.id)
-			# SendEmailJob.set(wait_until: 1.minutes.from_now).perform_later(@interview.id)			
+			SendEmailJob.perform_later(@interview.id) # Scheduling tasks using '../app/jobs/send_email_job.rb'
+			@interview.send_invitation_mail(@interview.id)
 			flash[:success] = "Interview has been created!"
             redirect_to @interview
 		else
@@ -33,8 +32,8 @@ class InterviewsController < ApplicationController
 	def update
 		@interview = Interview.find(params[:id]) 
 		if @interview.update(interview_params) # can restrict in passing args
-			# UserMailer.with(interview: @interview).update_invitation_email.deliver_now
-   #          UserMailer.with(interview: @interview).reminder_email.deliver_later(wait_until: @interview.start_time - 30.minutes)
+			SendEmailJob.perform_later(@interview.id)
+			@interview.send_updation_mail(@interview.id)
 			flash[:success] = "Interview has been updated!"
             redirect_to @interview
 		else
@@ -45,7 +44,7 @@ class InterviewsController < ApplicationController
 
 	def destroy
 		@interview = Interview.find(params[:id])
-		# UserMailer.with(interview: @interview).decline_invitation_email.deliver_now
+		@interview.send_decline_mail(@interview.id)
 		@interview.destroy
 		flash[:success] = "Interview has been declined!"
 		redirect_to interviews_path

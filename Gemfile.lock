@@ -252,7 +252,6 @@ DEPENDENCIES
   gs (= 0.2.0)
   jbuilder (~> 2.5)
   listen (= 3.2.1)
-  mail (= 2.7.1)
   paperclip (= 6.1.0)
   puma (~> 3.7)
   rack (= 2.2.2)

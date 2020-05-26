@@ -46,7 +46,6 @@ gem 'paperclip', '6.1.0'
 gem 'gs', '0.2.0'
 gem 'simple_form', '5.0.2'
 gem 'bootstrap-sass'
-gem 'mail', '2.7.1'
 gem 'listen', '3.2.1'
 
 gem 'wdm'
@@ -59,5 +58,3 @@ gem 'sinatra', require: false
 gem 'slim'
 gem 'rake', '13.0.1'
 gem 'coffee-rails'
-
-gem 'mailcatcher', '0.7.1'
