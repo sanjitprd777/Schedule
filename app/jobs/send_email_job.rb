@@ -3,7 +3,7 @@ class SendEmailJob < ActiveJob::Base
    
   def perform(interview_id)
     @interview = Interview.find(interview_id)
-	UserMailer.with(interview: @interview).reminder_email.deliver_later(wait_until: @interview.start_time - 30.minutes)
+	UserMailer.with(interview: @interview).reminder_email.deliver_later(wait_until: @interview.start_time - 30.minute)
   end
 
 end

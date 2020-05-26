@@ -58,3 +58,4 @@ gem 'sinatra', require: false
 gem 'slim'
 gem 'rake', '13.0.1'
 gem 'coffee-rails'
+gem 'pundit', '2.1.0'
