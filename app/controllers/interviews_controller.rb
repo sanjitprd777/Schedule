@@ -22,7 +22,7 @@ class InterviewsController < ApplicationController
 		end_time = params[:interview][:end_time]
 		interviewee_email = params[:interview][:interviewee_email]
 		interviewer_email = params[:interview][:interviewer_email]
-		result, reason = Interview.participants_available(start_time, end_time, interviewee_email, interviewer_email)
+		result, reason = participants_available(start_time, end_time, interviewee_email, interviewer_email)
 
 		@interview = Interview.new(interview_params) 
 		if result == true
