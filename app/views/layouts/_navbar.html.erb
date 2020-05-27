@@ -1,0 +1,15 @@
+<nav class="navbar sticky-top navbar-dark bg-dark">
+  <form class="form-inline">
+      <a class="navbar-brand"><%= link_to "Home", root_path %>
+</a>
+    <div style="padding-left: 10px;">
+        <a class="navbar-brand"><%= link_to 'All Interviews', controller: 'interviews' %>
+
+</a>
+</div>
+    <div style="padding-left: 10px;">
+        <a class="navbar-brand"><%= link_to 'New Interview', new_interview_path %>
+</a>
+</div>
+  </form>
+</nav>

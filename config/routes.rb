@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
-  require 'sidekiq/web'
-  
-  mount Sidekiq::Web => "/sidekiq"
+	require 'sidekiq/web'
 
-  get 'event/index'
+	mount Sidekiq::Web => "/sidekiq"
 
-  resources :interviews
+	get 'event/index'
 
-  root 'event#index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+	resources :interviews
+
+	root 'event#index'
+
+	get '/404' , to: 'errors#not_found'
+	get '/422' , to: 'errors#unacceptable'
+	get '/500' , to: 'errors#server_errors'
+
 end

@@ -1,4 +1,6 @@
 Rails.application.configure do
+  config.exceptions_app = self.routes
+
   # Settings specified here will take precedence over those in config/application.rb.
   
   Paperclip.options[:command_path] = 'C:\Program Files (x86)\GnuWin32\bin'
