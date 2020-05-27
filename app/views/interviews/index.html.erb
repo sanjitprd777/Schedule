@@ -1,14 +1,34 @@
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+
+<div class="contained">
+<div class="container-fluid">
+
 <h1>Listing Interviews Events</h1>
- 
-<%= link_to 'New Interview', new_interview_path %>
-<table>
+  <table>
   <tr>
-    <th>Title</th>
+    <th>Subject</th>
     <th>Interviewer email</th>
     <th>Interviewee email</th>
     <th>Start time</th>
     <th>End time</th>
-    <th>Resume</th>
+    <th>Attachment</th>
+    <th>Change</th>
   </tr>
 
   <% @interviews.each do |interview| %>
@@ -20,11 +40,9 @@
       <td><%= interview.try(:end_time).try(:strftime , "%m/%d/%Y at %I:%M%p") %></td>
       <td><%= link_to 'Resume', interview.avatar.url %></td>
       <td><%= link_to 'Show', interview_path(interview) %></td>
-      <td><%= link_to 'Edit', edit_interview_path(interview) %></td>
-      <td><%= link_to 'Destroy', interview_path(interview),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
 </table>
+</div>
+</div>
 
