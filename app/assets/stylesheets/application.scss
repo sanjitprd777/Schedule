@@ -45,3 +45,14 @@
 	box-shadow: 0 0 4px 4px rgba(0,0,0,.03);
 	padding: 1em 1em;
 }
+
+.footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+	padding-top: 3px;
+	background-color: DarkSalmon;
+	color: white;
+}

@@ -1,13 +1,13 @@
 <nav class="navbar navbar-default sticky-top">
     <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav" id="myBtn">
       	  <li>
       	  	<%= link_to "Home", root_path %>
       	  </li>
           <li>
-			<%= link_to 'All Interviews', controller: 'interviews' %></li>
+			<%= link_to 'Interviews', controller: 'interviews' %></li>
           <li>
-            <%= link_to 'New Interview', new_interview_path %>
+            <%= link_to 'New', new_interview_path %>
           </li>
       </ul>
     </div>

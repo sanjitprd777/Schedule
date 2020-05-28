@@ -1,21 +1,23 @@
 class InterviewsController < ApplicationController
 	include Pundit
-	
 	def index
 		@interviews = Interview.all.order(created_at: :desc)
+		render json: @interviews
 	end
 
 	def show
 		@interview = Interview.find(params[:id]) 
-		
+		render json: @interview
 	end
 
 	def new
 		@interview = Interview.new
+		render json: @interview
 	end
 
 	def edit
 	  	@interview = Interview.find(params[:id])
+	  	render json: @interview
 	end
 
 	def create
@@ -27,21 +29,20 @@ class InterviewsController < ApplicationController
 
 		@interview = Interview.new(interview_params) 
 		if result == true
-			if @interview.save
-				SendEmailJob.perform_later(@interview.id) # Scheduling tasks using '../app/jobs/send_email_job.rb'
-				@interview.send_invitation_mail(@interview.id)
-				flash[:success] = "Interview has been created!"
-	            redirect_to @interview
-			else
-				flash[:alert] = "Unable to complete interview request, Please check parameters"
-				render 'new'
+			respond_to do |format|
+				if @interview.save
+					SendEmailJob.perform_later(@interview.id) # Scheduling tasks using '../app/jobs/send_email_job.rb'
+					@interview.send_invitation_mail(@interview.id)
+					format.html { redirect_to @interview, notice: "Interview has been created!" }
+					format.json { @interview } 
+				else
+					format.html { render :new, notice: "Unable to complete interview request, Please check parameters" }
+				end
 			end
 		else
 			respond_to do |format|
 	            format.html { render 'new', notice: reason}
 	        end
-    		# @interview.errors.add(message: reason) 
-    		# render 'new'
     	end
 	end
 
@@ -54,21 +55,20 @@ class InterviewsController < ApplicationController
 
 		@interview = Interview.find(params[:id])
 		if result == true
-			if @interview.update(interview_params) # can restrict in passing args
-				SendEmailJob.perform_later(@interview.id)
-				@interview.send_updation_mail(@interview.id)
-				flash[:success] = "Interview has been updated!"
-	            redirect_to @interview
-			else
-				flash[:alert] = "Unable to complete interview request, Please check parameters"
-				render 'edit'
+			respond_to do |format|
+				if @interview.update(interview_params) # can restrict in passing args
+					SendEmailJob.perform_later(@interview.id)
+					@interview.send_updation_mail(@interview.id)
+					format.html { redirect_to @interview, notice: "Interview has been updated!" }
+					format.json { @interview } 
+				else
+					format.html { render :edit, notice: "Unable to complete interview request, Please check parameters" }
+				end
 			end
 		else
 			respond_to do |format|
 	            format.html { render 'new', notice: reason}
 	        end
-    		# @interview.errors.add(message: reason) 
-    		# render 'new'
     	end
 	end
 
