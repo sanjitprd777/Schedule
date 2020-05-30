@@ -1,12 +1,10 @@
-"use strict"
-
 const routes = {
     '/' : Home,
     '/interviews' : Interviews,
     '/interviews/new' : New,
-    '/interviews/:id/edit' : Edit,
     '/interviews/:id' : Show,
-    '/views/errors/not_found' : Error404
+    '/interviews/:id/edit' : Edit,
+    '/404' : Error404
 }
 
 const router = async () => {
@@ -23,7 +21,7 @@ const router = async () => {
     const request = Utils.parseRequestURL();
 
     const parsedURL = (request.resource ? '/' + request.resource : '/') + 
-                    (request.id ? '/:id' : '') + 
+                    (request.id ? ((request.id == 'new') ? '/new' : '/:id') : '') + 
                     (request.verb ? '/' + request.verb : '');
 
     const page = routes[parsedURL] ? routes[parsedURL] : Error404;
@@ -34,10 +32,6 @@ const router = async () => {
 
 }
 
-window.addEventListener('hashchange', (event) => {
-    console.log('hashchanged');
-    router(event);
-});
-// window.addEventListener('hashchange', router);
+window.addEventListener('hashchange', router);
 
 window.addEventListener('load', router);

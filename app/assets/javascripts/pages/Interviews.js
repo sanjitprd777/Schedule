@@ -17,7 +17,6 @@ const getInterviews = async () => {
 const Interviews = {
     render : async () => {
         let interviews = await getInterviews()
-        console.log(interviews)
         let view =  `
           <section class="section">
             <div class="contained">
@@ -39,7 +38,7 @@ const Interviews = {
               background-color: #dddddd;
             }
             </style>
-
+            <p class="demo"></p>
             <h1>Listing Interviews Events</h1>
               <table>
               <tr>
@@ -63,7 +62,7 @@ const Interviews = {
                         <td> ${interview.interviewee_email} </td>
                         <td> ${interview.start_time} </td>
                         <td> ${interview.end_time} </td>
-                        <td> <a onclick = "window.location.href='${interview.avatar_file_name}'">Resume</a></td>
+                        <td> <a onclick = "window.location.href='/system/interviews/avatars/000/000/${interview.id}/original/${interview.avatar_file_name}'">Resume</a></td>
                         <td> <a onclick = "window.location.href='/#/interviews/${interview.id}'">Show</a></td>
                       </tr>
                     `

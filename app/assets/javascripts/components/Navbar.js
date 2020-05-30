@@ -6,16 +6,16 @@ const Navbar = {
               <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                    <a class="navbar-item" href = "/#/">
+                    <a class="navbar-item" onclick = "window.location.href='/#/'">
                       Home
                     </a>
                     </li>
                     <li>
-                    <a class="navbar-item" href = "/#/interviews/">
+                    <a class="navbar-item" onclick = "window.location.href='/#/interviews/'">
                       Interviews
                     </a>
                     <li>
-                    <a class="navbar-item" href = "/#/interviews/new/">
+                    <a class="navbar-item" onclick = "window.location.href='/#/interviews/new/'">
                       New
                     </a>
                     </li>

@@ -11,55 +11,65 @@ const getShows = async (id) => {
         return json
     } catch (err) {
         console.log('Error getting documents', err)
+        return null
     }
 }
 
+function myFunction(id) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML = "Interview successfully deleted.";
+    }
+  };
+  xhttp.open("DELETE", "/interviews/" + id, true);
+  xhttp.send();
+
+  window.location.href= '/#/interviews/'
+
+}
 const Show = {
     render : async () => {
         let req = Utils.parseRequestURL();
         let interview = await getShows(req.id);
-        console.log(interview)
+      if(interview != null){
         let view =  `
           <section class="section">
             <div class="container">
             <div class="container-fluid">
 
               <div class="form-group">
-                <strong>Title:</strong>
-                 ${interview.title}
+                <label>Title:</label>
+                <labelshow>${interview.title}</labelshow>
               </div>
 
               <div class="form-group">
-                <strong>Interviewer email:</strong>
-                 ${interview.interviewer_email}
+                <label>Interviewer email:</label>
+                <labelshow>${interview.interviewer_email}</labelshow>
               </div>
 
               <div class="form-group">
-                <strong>Interviewee email:</strong>
-                 ${interview.interviewee_email}
+                <label>Interviewee email:</label>
+                <labelshow>${interview.interviewee_email}</labelshow>
               </div>
 
               <div class="form-group">
-                <strong>Start time:</strong>
-                 ${interview.start_time}
+                <label>Start time:</label>
+                <labelshow>${interview.start_time}</labelshow>
               </div>
               
               <div class="form-group">
-                <strong>End time:</strong>
-                 ${interview.end_time}
+                <label>End time:</label>
+                <labelshow>${interview.end_time}</labelshow>
               </div>
 
               <div class="form-group">
-                <strong>Resume:</strong>
-                <a onclick = "window.location.href='${interview.avatar_file_name}'">Resume</a>
+                <label>Resume:</label>
+                <labelshow><a onclick = "window.location.href='${interview.avatar_file_name}'">Resume</a></labelshow>
               </div>
               <div class="form-group text-center">
-              <a onclick = "window.location.href= '/#/interviews/${
-                interview.id
-              }/Edit'">Edit | </a>
-              <a onclick = "window.location.href= '/#/interviews/${
-                interview.id
-              }/delete'">Delete | </a>
+              <a onclick = "window.location.href= '/#/interviews/${interview.id}/Edit'">Edit | </a>
+              <a onclick = "myFunction(${req.id})">Delete | </a>
               <a onclick = "window.location.href= '/#/interviews'">Back</a>
               </div>
             </div>
@@ -67,6 +77,7 @@ const Show = {
           </section>
         `
         return view
+      }
     },
     after_render: async () => {  }
 }
