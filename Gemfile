@@ -61,3 +61,6 @@ gem 'coffee-rails'
 gem 'pundit', '2.1.0'
 gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
+gem "actionpack", ">= 5.2.4.3"
+gem "activesupport", ">= 5.2.4.3"
+gem "actionview", ">= 5.2.4.2"
