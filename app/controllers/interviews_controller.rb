@@ -23,33 +23,26 @@ class InterviewsController < ApplicationController
 	end
 
 	def create
-		puts "Inside create method 1"
 		start_time = params[:interview][:start_time]
 		end_time = params[:interview][:end_time]
 		interviewee_email = params[:interview][:interviewee_email]
 		interviewer_email = params[:interview][:interviewer_email]
 		result, reason = participants_available(start_time, end_time, interviewee_email, interviewer_email)
-		puts interview_params
 		@interview = Interview.new(interview_params2) 
 		if result == true
-			puts "Inside create method 2"
 			respond_to do |format|
-				puts "Inside create method 3"
-				# x = @interview.save!
-				# puts x
+				x = @interview.save!
+				puts x
 				if @interview.save
-					puts "Inside create method 4"
 					SendEmailJob.perform_later(@interview.id) # Scheduling tasks using '../app/jobs/send_email_job.rb'
 					@interview.send_invitation_mail(@interview.id)
 					format.html { redirect_to @interviews} ## Specify the format in which you are rendering "new" page
 					format.json { render 'show', status: :created, location: @interview } 
 				else
-					puts "Inside create else 5"
 					format.html { render 'new'} ## Specify the format in which you are rendering "new" page
      				format.json { render json: @interview.errors } ## You might want to specify a json format as well
 				end
 			end
-			# render json: @interview
 		else
 			respond_to do |format|
 	            format.html { render 'new', notice: reason}
@@ -96,8 +89,7 @@ class InterviewsController < ApplicationController
 private
 
 	def interview_params
-		params.require(:interview).permit(:title, :interviewer_email, :interviewee_email, :start_time, :end_time, :avatar)
-		
+		params.require(:interview).permit(:title, :interviewer_email, :interviewee_email, :start_time, :end_time, :avatar)		
 	end
 
 	def interview_params2

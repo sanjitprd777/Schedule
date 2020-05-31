@@ -5,8 +5,11 @@ let create = async (interview) => {
     interviewee_email: interview.interviewee_email,
     start_time: interview.start_time,
     end_time: interview.end_time,
-    // avatar: interview.avatar
+    avatar: interview.avatar
   };
+
+  console.log(data);
+  
   const options = {
     method: "POST",
     headers: {
@@ -70,19 +73,24 @@ const New = {
   },
   after_render: async () => {
       document.getElementById("sub").addEventListener("click", () => {
+
       let title = document.getElementById("tit");
       let interviewer_email = document.getElementById("r-email");
       let interviewee_email = document.getElementById("e-email");
       let start_time = document.getElementById("stime");
       let end_time = document.getElementById("etime");
-      // let avatar = document.getElementById("ava");
+      let avatar = document.getElementById("ava");
+      
+      console.log(typeof(avatar));
+      console.log(document.getElementById("ava").files[0]);
+
       let interview = {
         title: title.value,
         interviewer_email: interviewer_email.value,
         interviewee_email: interviewee_email.value,
         start_time: start_time.value,
         end_time: end_time.value,
-        // avatar: avatar.value
+        avatar: avatar.files[0]
       };
       create(interview);
     });
