@@ -6,32 +6,21 @@ git_source(:github) do |repo_name|
 end
 
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.4'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-# See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
-gem 'redis', '4.1.4'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -44,6 +33,9 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
+gem 'rails', '6.0.3.1'
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -53,9 +45,22 @@ gem 'sass', '3.7.4'
 gem 'paperclip', '6.1.0'
 gem 'gs', '0.2.0'
 gem 'simple_form', '5.0.2'
-gem 'mail', '2.7.1'
+gem 'bootstrap-sass'
 gem 'listen', '3.2.1'
 
 gem 'wdm'
-gem 'sidekiq', '6.0.7'
-gem 'sinatra', '2.0.8.1'
+gem 'sidekiq' , '<5'
+gem 'redis'
+gem 'redis-namespace', '1.7.0'
+gem "simple_calendar", "~> 2.0"
+gem 'rack', '2.2.2'
+gem 'sinatra', require: false
+gem 'slim'
+gem 'rake', '13.0.1'
+gem 'coffee-rails'
+gem 'pundit', '2.1.0'
+gem 'bootstrap', '~> 4.1.1'
+gem 'jquery-rails'
+gem "actionpack", ">= 5.2.4.3"
+gem "activesupport", ">= 5.2.4.3"
+gem "actionview", ">= 5.2.4.2"

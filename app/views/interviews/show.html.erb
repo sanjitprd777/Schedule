@@ -1,33 +1,39 @@
-<p>
-  <strong>Title:</strong>
-  <%= @interview.title %>
-</p>
- 
-<p>
-  <strong>Interviewer email:</strong>
-  <%= @interview.interviewer_email %>
-</p>
+<div class="container">
+<div class="container-fluid">
 
+  <div class="form-group">
+    <strong>Title:</strong>
+    <%= @interview.title %>
+  </div>
 
-<p>
-  <strong>Interviewee email:</strong>
-  <%= @interview.interviewee_email %>
-</p>
+  <div class="form-group">
+    <strong>Interviewer email:</strong>
+    <%= @interview.interviewer_email %>
+  </div>
 
-<p>
-  <strong>Start time:</strong>
-  <%= @interview.try(:start_time).try(:strftime , "%m/%d/%Y at %I:%M%p")  %>
-</p>
+  <div class="form-group">
+    <strong>Interviewee email:</strong>
+    <%= @interview.interviewee_email %>
+  </div>
 
-<p>
-  <strong>End time:</strong>
-  <%= @interview.try(:end_time).try(:strftime , "%m/%d/%Y at %I:%M%p") %>
-</p>
+  <div class="form-group">
+    <strong>Start time:</strong>
+    <%= @interview.try(:start_time).try(:strftime , "%m/%d/%Y at %I:%M%p")  %>
+  </div>
+  
+  <div class="form-group">
+    <strong>End time:</strong>
+    <%= @interview.try(:end_time).try(:strftime , "%m/%d/%Y at %I:%M%p") %>
+  </div>
 
-<p>
-  <strong>Resume:</strong>
-  <%= link_to 'Resume', @interview.avatar.url %>
-</p>
-
-<%= link_to 'Edit', edit_interview_path(@interview) %> |
-<%= link_to 'Back', interviews_path %>
+  <div class="form-group">
+    <strong>Resume:</strong>
+    <%= link_to 'Resume', @interview.avatar.url %>
+  </div>
+  <div class="form-group text-center">
+  <%= link_to 'Edit', edit_interview_path(@interview) %> |
+  <%= link_to 'Destroy', interview_path(@interview), method: :delete, data: { confirm: 'Are you sure?' } %> |
+  <%= link_to 'Back', interviews_path %>
+  </div>
+</div>
+</div>

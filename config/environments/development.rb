@@ -1,4 +1,6 @@
 Rails.application.configure do
+  config.exceptions_app = self.routes
+
   # Settings specified here will take precedence over those in config/application.rb.
   
   Paperclip.options[:command_path] = 'C:\Program Files (x86)\GnuWin32\bin'
@@ -47,7 +49,11 @@ Rails.application.configure do
   # }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  # config.action_mailer.default_options = {from: 'no-reply@gmail.com'}
+
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+
+
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {

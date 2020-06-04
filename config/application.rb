@@ -15,7 +15,7 @@ module Schedule
   	config.action_mailer.asset_host = 'http://localhost:3000/'
 
 	  # config.active_job.queue_adapter = Rails.env.production? ? :sidekiq : :async
-
+    config.time_zone = 'Kolkata'
     config.active_job.queue_adapter = :sidekiq
 
     # Settings in config/environments/* take precedence over those specified here.

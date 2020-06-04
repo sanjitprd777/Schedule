@@ -1,0 +1,78 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.page {
+	display: block;
+	width: 100%;
+	min-height: 100%;
+	padding: 1rem 2rem;
+}
+
+.navbar-default {
+  margin-bottom: 0px;
+  height: 50px;
+  background-color: blue;
+  .navbar-nav li a {
+	  display: block;
+	  color: yellow;
+	  text-align: center;
+	  padding: 14px 16px;
+  }
+
+  .navbar-nav li a:hover {
+      color: green;
+	  background-color: lightblue;
+	}
+}
+
+
+.container {
+	width: 70%;
+	max-width: 750px;
+	margin: 3em auto 0 auto;
+	border-radius: 7px;
+	-webkit-box-shadow: 0 0 4px 3px rgba(0,0,0,.3);
+	box-shadow: 0 0 4px 4px rgba(0,0,0,.03);
+	padding: 1em 0;
+}
+
+
+.contained {
+	margin: 3em 7em auto 7em;
+	border-radius: 7px;
+	-webkit-box-shadow: 0 0 4px 3px rgba(0,0,0,.3);
+	box-shadow: 0 0 4px 4px rgba(0,0,0,.03);
+	padding: 1em 1em;
+}
+
+.footer {
+    position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+	padding-top: 3px;
+	background-color: DarkSalmon;
+	color: white;
+}
+
+input {
+  display: inline-block;
+  width: 15em;
+  position: relative;
+  margin-left: 1em;
+}
+
+label {
+  display: inline-block;
+  width: 15em;
+  margin-left: 1em;
+  padding-top: 1.5em;
+}
+
+labelshow {
+  display: inline-block;
+  width: 15em;
+  position: relative;
+  margin-left: 1em;
+}
