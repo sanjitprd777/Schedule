@@ -49,7 +49,7 @@ gem 'bootstrap-sass'
 gem 'listen', '3.2.1'
 
 gem 'wdm'
-gem 'sidekiq' , '<5'
+gem 'sidekiq' , '<6'
 gem 'redis'
 gem 'redis-namespace', '1.7.0'
 gem "simple_calendar", "~> 2.0"
