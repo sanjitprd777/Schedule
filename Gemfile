@@ -33,7 +33,7 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
-gem 'rails', '6.0.3.1'
+gem 'rails', '7.0.4.1'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
